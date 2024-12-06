@@ -20,25 +20,7 @@ function App() {
         <br />
         <button onClick={ addToDo }>Submit</button>
       </form>
-      <table>
-        <thead>
-          <tr>
-            <th>To Do's List</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Something</td>
-            <td><button>delete</button></td> 
-          </tr>
-          </tbody>
-          </table>
-          <ul>
-
-          {toDos.map(( toDos, index) => (
-            <li key={index}> { toDos }</li>
-          ))}  
-          </ul>   
+    
       
     </div>
   );
