@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
     .then(result => {
       // Sends back the results in an object
       //?may need to change res.send to target correct data
-      res.send(result.id);
+      res.send(result.rows);
     })
     .catch(error => {
       console.log('error getting todos in router', error);

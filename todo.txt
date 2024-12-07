@@ -1,0 +1,2 @@
+why does my task not get applied to the dom on submit but will on refresh
+    might be because I might need another fetch that will happen on submit

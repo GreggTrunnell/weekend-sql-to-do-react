@@ -5,9 +5,9 @@ function App() {
   const [newToDo, setNewToDo ]= useState('');
   const [ toDos, setToDos ] = useState( []);
 
-  // useEffect(()=> {
-  //   fetchList();
-  // },[]);
+  useEffect(()=> {
+    fetchList();
+  },[]);
 
   function addToDo(event ) {
  event.preventDefault();
@@ -17,30 +17,36 @@ function App() {
     axios ({ 
       method: 'POST',
       url: '/api/todos',
-      data: {text: newToDo,
+      data: {
+            text: newToDo,
             isComplete: false,
       }
     }).then((response)=>{
       console.log('POST response data', response.data);
+      fetchList();
     }).catch((error)=>{
       console.log('error in POST',error);
     })
   }
 
-  // const fetchList= () => {
-  //   console.log('fetching images')
-  //   axios({
-  //     method: "GET",
-  //     url: "/api/todos"
-  //   })
-  //   .then((response)=>{
-  //     console.log("response from GET", response.data);
-  //     setToDos(response.data)
-  //   })
-  //   .catch((error)=>{
-  //     console.log("error on GET", error);
-  //   });
-  // };
+  const fetchList= () => {
+    console.log('fetching images')
+    axios({
+      method: "GET",
+      url: "/api/todos",
+      data: {
+        text: newToDo,
+        isComplete: false,
+      }
+    })
+    .then((response)=>{
+      console.log("response from GET", response.data);
+      setToDos(response.data)
+    })
+    .catch((error)=>{
+      console.log("error on GET", error);
+    });
+  };
 
 
   return (
@@ -62,7 +68,7 @@ function App() {
         <tbody>
           {toDos.map(( toDos, index)=>(
             <tr key={index}> 
-              <td>{ toDos }</td>
+              <td>{ toDos.text }</td>
               <td><button>Finished</button></td>
               <td><button>Delete</button></td> 
               </tr>
