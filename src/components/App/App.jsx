@@ -30,22 +30,14 @@ function App() {
         </thead>
         <tbody>
           {toDos.map(( toDos, index)=>(
-            <tr key={index}> { toDos }</tr>
+            <tr key={index}> 
+              <td>{ toDos }</td>
+              <td><button>Finished</button></td>
+              <td><button>Delete</button></td> 
+              </tr>
           ))}
-          {/* <tr>
-            <td>Something</td>
-            <td><button>Finished</button></td>
-            <td><button>Delete</button></td> 
-          </tr> */}
           </tbody>
-          </table>
-          <ul>
-
-          {toDos.map(( toDos, index) => (
-            <li key={index}> { toDos }</li>
-          ))}  
-          </ul>   
-      
+          </table>  
     </div>
   );
 }
