@@ -9,6 +9,7 @@ app.use(express.static('build'));
 
 /** ---------- EXPRESS ROUTES ---------- **/
 app.use('/api/todos', todoRouter);
+app.post('/api/todos', todoRouter);
 
 /** ---------- START SERVER ---------- **/
 app.listen(PORT,  () => {
