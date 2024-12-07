@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from 'axios';
 
 function App() {
   const [newToDo, setNewToDo ]= useState('');
@@ -9,7 +10,14 @@ function App() {
     console.log("submit worked");
     // the ... is react's .push
     setToDos([...toDos, newToDo])
-    console.log(toDos)
+    axios ({ 
+      method: 'POST',
+      url: '/api/todo',
+    }).then((response)=>{
+      console.lod('POST response data', response.data);
+    }).catch((response)=>{
+      console.log('error in POST',error);
+    })
   }
 
   return (
