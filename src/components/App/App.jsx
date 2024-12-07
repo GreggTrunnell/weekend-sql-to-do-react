@@ -24,13 +24,19 @@ function App() {
         <thead>
           <tr>
             <th>To Do's List</th>
+            <th>To Do Status</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
+          {toDos.map(( toDos, index)=>(
+            <tr key={index}> { toDos }</tr>
+          ))}
+          {/* <tr>
             <td>Something</td>
-            <td><button>delete</button></td> 
-          </tr>
+            <td><button>Finished</button></td>
+            <td><button>Delete</button></td> 
+          </tr> */}
           </tbody>
           </table>
           <ul>
