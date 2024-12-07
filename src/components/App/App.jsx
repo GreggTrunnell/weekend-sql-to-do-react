@@ -1,24 +1,44 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from 'axios';
 
 function App() {
   const [newToDo, setNewToDo ]= useState('');
-  const [ toDos, setToDos ] = useState( [])
+  const [ toDos, setToDos ] = useState( []);
+
+  useEffect(()=> {
+    fetchList();
+  },[]);
 
   function addToDo(event ) {
  event.preventDefault();
     console.log("submit worked");
     // the ... is react's .push
     setToDos([...toDos, newToDo])
-    axios ({ 
-      method: 'POST',
-      url: '/api/todo',
-    }).then((response)=>{
-      console.lod('POST response data', response.data);
-    }).catch((response)=>{
-      console.log('error in POST',error);
-    })
+    // axios ({ 
+    //   method: 'POST',
+    //   url: '/api/todo',
+    // }).then((response)=>{
+    //   console.lod('POST response data', response.data);
+    // }).catch((response)=>{
+    //   console.log('error in POST',error);
+    // })
   }
+
+  const fetchList= () => {
+    console.log('fetching images')
+    axios({
+      method: "GET",
+      url: "/api/todos"
+    })
+    .then((response)=>{
+      console.log("response from GET", response.data);
+      setToDos(response.data)
+    })
+    .catch((error)=>{
+      console.log("error on GET", error);
+    });
+  };
+
 
   return (
     <div>
