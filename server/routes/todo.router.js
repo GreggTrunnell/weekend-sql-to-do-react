@@ -4,11 +4,11 @@ const pool = require('../modules/pool.js');
 
 // GET
 router.get('/', (req, res) => {
-    let queryText = 'SELECT * FROM "todos" ORDER BY "id";';
+    let queryText = 'SELECT * FROM todos ORDER BY "id";';
     pool.query(queryText)
     .then(result => {
       // Sends back the results in an object
-      //?may need to change res.send to target correct data
+      
       res.send(result.rows);
     })
     .catch(error => {
@@ -21,8 +21,8 @@ router.get('/', (req, res) => {
 router.post('/', (req, res)=>{
     let newTodo = req.body;
     console.log('Adding todo POST in router', newTodo);
-    let queryText= `INSERT INTO "todos" ("text", "isComplete")
-                    VALUES ($1, $2)`;
+    let queryText= `INSERT INTO todos ("text", "isComplete")
+                    VALUES ($1, $2);`;
     pool.query(queryText, [ newTodo.text, newTodo.isComplete])
     .then(result=>{
         res.sendStatus(201);
@@ -35,5 +35,20 @@ router.post('/', (req, res)=>{
 // PUT
 
 // DELETE
+// Request must include a paramater indicating item to remove with "id"
+router.delete('/', (req,res)=>{
+    console.log("delete from router", req.body);
+    const queryText = `DELETE FROM todos WHERE id=$1;`;
+    const values = [ req.body.id ];
+    pool.query( queryText, values )
+    .then(( results )=> {
+        res.sendStatus( 200 );
+    })
+    .catch(error => {
+        console.log('error in delete router', error);
+        res.sendStatus( 400 );
+    })
+
+})
 
 module.exports = router;

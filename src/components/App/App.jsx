@@ -48,6 +48,20 @@ function App() {
     });
   };
 
+  function deleteTask( id ){
+    const taskToDelete={ id: id };
+    axios({
+      method: "DELETE",
+      url: "/api/todos",
+      data: taskToDelete,
+    }).then((response)=>{
+      // console.log('task deleted', response.data);
+      fetchList();
+    }).catch((error)=>{
+      console.log("error in DELETE", error)
+    });
+  }
+
 
   return (
     <div>
@@ -70,7 +84,7 @@ function App() {
             <tr key={index}> 
               <td>{ toDos.text }</td>
               <td><button>Finished</button></td>
-              <td><button>Delete</button></td> 
+              <td><button onClick={() => deleteTask(toDos.id)}>Delete</button></td> 
               </tr>
           ))}
           </tbody>
