@@ -10,8 +10,6 @@ app.use(express.static('build'));
 /** ---------- EXPRESS ROUTES ---------- **/
 app.use('/api/todos', todoRouter);
 
-
-
 /** ---------- START SERVER ---------- **/
 app.listen(PORT,  () => {
     console.log('Listening on port: ', PORT);

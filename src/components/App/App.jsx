@@ -61,7 +61,34 @@ function App() {
       console.log("error in DELETE", error)
     });
   }
-
+  function toggleIsComplete( id, complete ){
+    console.log("toggle was pushed");
+    const taskToComplete = {
+        id: id,
+        isComplete: complete,
+    };
+    if(complete){
+      taskToComplete.isComplete = false
+    } else {
+      taskToComplete.isComplete = true
+    }
+    let isCompleteButton = "Not Complete";
+  if (id.isComplete){
+    isCompleteButton = "Complete"
+  }
+    axios({
+      method: "PUT",
+      url: '/api/todos',
+      data: taskToComplete
+    })
+    .then((response)=>{
+      console.log("PUT in app.jsx", response.data);
+      fetchList();
+    })
+    .catch((error)=>{
+      console.log("error PUT app.jsx", error)
+    })
+  }
 
   return (
     <div>
@@ -83,7 +110,10 @@ function App() {
           {toDos.map(( toDos, index)=>(
             <tr key={index}> 
               <td>{ toDos.text }</td>
-              <td><button>Finished</button></td>
+              <td><button onClick={()=> toggleIsComplete(toDos.isComplete)}>Finished</button></td>
+              {/* if written like: onClick={deleteTask(toDos.id)} without arrow function the 
+              deleteTask would be invoked on render.
+              In this case the arrow function is calling deleteTask with toDos.id as its argument*/}
               <td><button onClick={() => deleteTask(toDos.id)}>Delete</button></td> 
               </tr>
           ))}

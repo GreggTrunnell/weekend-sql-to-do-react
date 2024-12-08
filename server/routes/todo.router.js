@@ -33,6 +33,19 @@ router.post('/', (req, res)=>{
     })
 })
 // PUT
+router.put('/', (req,res)=>{
+    console.log("PUT in router", req.body);
+    const queryText = `UPDATE todos SET "isComplete"=$1 WHERE "id"=$2;`;
+    const values = [ req.body.isComplete, req.body.id ];
+    pool.query( queryText, values )
+    .then((results)=>{
+        res.sendStatus( 200 );
+    })
+    .catch((error)=>{
+        console.log("error in PUT router", error)
+    })
+})
+
 
 // DELETE
 // Request must include a paramater indicating item to remove with "id"
