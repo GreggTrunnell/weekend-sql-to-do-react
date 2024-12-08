@@ -4,7 +4,7 @@ import axios from 'axios';
 function App() {
   const [newToDo, setNewToDo ]= useState('');
   const [ toDos, setToDos ] = useState([]);
-  let [ getStatus, setStatus] = useState( false )
+  let [ isCompleted, setIsCompleted] = useState( false )
   
   useEffect(()=> {
     fetchList();
@@ -61,7 +61,7 @@ function App() {
   
   const changeStatus = ()=>{
     // console.log("changing status boss",);
-    setStatus(getStatus="true")
+    setIsCompleted(!isCompleted);
     toggleIsComplete();
   }
   function toggleIsComplete( id, status ){
@@ -103,7 +103,7 @@ function App() {
           {toDos.map(( toDos, index)=>(
             <tr key={index}> 
               <td>{ toDos.text }</td>
-              <td><button onClick={changeStatus}>{getStatus.isComplete}</button></td>
+              <td><button onClick={changeStatus}>{isCompleted ? "Completed" : "Not Completed"}</button></td>
               {/* <td><button onClick={()=> toggleIsComplete(toDos.isComplete)}>Finished</button></td> */}
               {/* if written like: onClick={deleteTask(toDos.id)} without arrow function the 
               deleteTask would be invoked on render.
