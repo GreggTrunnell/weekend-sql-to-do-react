@@ -3,13 +3,14 @@ import axios from 'axios';
 
 function App() {
   const [newToDo, setNewToDo ]= useState('');
-  const [ toDos, setToDos ] = useState( []);
-
+  const [ toDos, setToDos ] = useState([]);
+  let [ getStatus, setStatus] = useState( false )
+  
   useEffect(()=> {
     fetchList();
   },[]);
 
-  function addToDo(event ) {
+  function addToDo(event) {
  event.preventDefault();
     console.log("submit worked");
     // the ... is react's .push
@@ -34,10 +35,6 @@ function App() {
     axios({
       method: "GET",
       url: "/api/todos",
-      data: {
-        text: newToDo,
-        isComplete: false,
-      }
     })
     .then((response)=>{
       console.log("response from GET", response.data);
@@ -61,35 +58,31 @@ function App() {
       console.log("error in DELETE", error)
     });
   }
-  function toggleIsComplete( id, complete ){
-    console.log("toggle was pushed");
+  
+  const changeStatus = ()=>{
+    // console.log("changing status boss",);
+    setStatus(getStatus="true")
+    toggleIsComplete();
+  }
+  function toggleIsComplete( id, status ){
+    // console.log("toggle was pushed");
     const taskToComplete = {
         id: id,
-        isComplete: complete,
-    };
-    if(complete){
-      taskToComplete.isComplete = false
-    } else {
-      taskToComplete.isComplete = true
+        isComplete: status,
     }
-    let isCompleteButton = "Not Complete";
-  if (id.isComplete){
-    isCompleteButton = "Complete"
-  }
     axios({
       method: "PUT",
       url: '/api/todos',
       data: taskToComplete
     })
     .then((response)=>{
-      console.log("PUT in app.jsx", response.data);
+      // console.log("PUT in app.jsx", response.data);
       fetchList();
     })
     .catch((error)=>{
       console.log("error PUT app.jsx", error)
     })
   }
-
   return (
     <div>
       <h1>TO DO APP</h1>
@@ -110,12 +103,13 @@ function App() {
           {toDos.map(( toDos, index)=>(
             <tr key={index}> 
               <td>{ toDos.text }</td>
-              <td><button onClick={()=> toggleIsComplete(toDos.isComplete)}>Finished</button></td>
+              <td><button onClick={changeStatus}>{getStatus.isComplete}</button></td>
+              {/* <td><button onClick={()=> toggleIsComplete(toDos.isComplete)}>Finished</button></td> */}
               {/* if written like: onClick={deleteTask(toDos.id)} without arrow function the 
               deleteTask would be invoked on render.
               In this case the arrow function is calling deleteTask with toDos.id as its argument*/}
               <td><button onClick={() => deleteTask(toDos.id)}>Delete</button></td> 
-              </tr>
+            </tr>
           ))}
           </tbody>
           </table>  
