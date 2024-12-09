@@ -59,17 +59,27 @@ function App() {
     });
   }
   
-  const changeStatus = ()=>{
-    // console.log("changing status boss",);
-    setIsCompleted(!isCompleted);
-    toggleIsComplete();
-  }
+  // const changeStatus = ()=>{
+  //   // console.log("changing status boss",);
+  //   setIsCompleted(!isCompleted);
+  //   toggleIsComplete();
+  // }
   function toggleIsComplete( id, status ){
     // console.log("toggle was pushed");
+        // switch(status){
+        //   case true:
+        //     return false;
+        //   case false:
+        //     return true;
+        //   default:
+        //     return false;
+        // }
+    
     const taskToComplete = {
         id: id,
-        isComplete: status,
+        isComplete: false,
     }
+    console.log(taskToComplete)
     axios({
       method: "PUT",
       url: '/api/todos',
@@ -103,7 +113,7 @@ function App() {
           {toDos.map(( toDos, index)=>(
             <tr key={index}> 
               <td>{ toDos.text }</td>
-              <td><button onClick={changeStatus}>{isCompleted ? "Completed" : "Not Completed"}</button></td>
+              <td><button onClick={() => toggleIsComplete(toDos.id, toDos.isComplete)}>{toDos.isComplete ? "Completed" : "Not Completed"}</button></td>
               {/* <td><button onClick={()=> toggleIsComplete(toDos.isComplete)}>Finished</button></td> */}
               {/* if written like: onClick={deleteTask(toDos.id)} without arrow function the 
               deleteTask would be invoked on render.
