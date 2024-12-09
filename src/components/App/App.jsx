@@ -4,7 +4,7 @@ import axios from 'axios';
 function App() {
   const [newToDo, setNewToDo ]= useState('');
   const [ toDos, setToDos ] = useState([]);
-  let [ isCompleted, setIsCompleted] = useState( false )
+
   
   useEffect(()=> {
     fetchList();
@@ -59,25 +59,10 @@ function App() {
     });
   }
   
-  // const changeStatus = ()=>{
-  //   // console.log("changing status boss",);
-  //   setIsCompleted(!isCompleted);
-  //   toggleIsComplete();
-  // }
   function toggleIsComplete( id, status ){
-    // console.log("toggle was pushed");
-        // switch(status){
-        //   case true:
-        //     return false;
-        //   case false:
-        //     return true;
-        //   default:
-        //     return false;
-        // }
-    
     const taskToComplete = {
         id: id,
-        isComplete: false,
+        isComplete: !status,
     }
     console.log(taskToComplete)
     axios({
@@ -99,7 +84,7 @@ function App() {
       <form>
         <input type="text" placeholder="Add a To Do" onChange={(e)=>{setNewToDo(e.target.value)}} />
         <br />
-        <button onClick={ addToDo }>Submit</button>
+        <button onClick={ addToDo }>Add To Do</button>
       </form>
       <table>
         <thead>
