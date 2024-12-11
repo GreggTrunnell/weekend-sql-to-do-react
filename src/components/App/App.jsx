@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
+import './App.css';
 
 function App() {
   const [newToDo, setNewToDo ]= useState('');
@@ -96,10 +97,13 @@ function App() {
         </thead>
         <tbody>
           {toDos.map(( toDos, index)=>(
-            <tr key={index}> 
+            <tr key={toDos.id}> 
               <td>{ toDos.text }</td>
-              <td><button onClick={() => toggleIsComplete(toDos.id, toDos.isComplete)}>{toDos.isComplete ? "Completed" : "Not Completed"}</button></td>
-              {/* <td><button onClick={()=> toggleIsComplete(toDos.isComplete)}>Finished</button></td> */}
+              {/* Can't get the classes to work properly. Might have to do with CDN
+              <td className={toDos.isComplete ? "complete-true" : "complete-false"}> */}
+              <td>
+                <button onClick={() => toggleIsComplete(toDos.id, toDos.isComplete)}>{toDos.isComplete ? "Completed" : "Not Completed"}</button>
+              </td>          
               {/* if written like: onClick={deleteTask(toDos.id)} without arrow function the 
               deleteTask would be invoked on render.
               In this case the arrow function is calling deleteTask with toDos.id as its argument*/}
