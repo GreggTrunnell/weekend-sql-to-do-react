@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import './App.css';
+import NamePractice from "../NamePractice/NamePractice";
+import deleteTask from "../deleteTask/deleteTask";
 
 function App() {
   const [newToDo, setNewToDo ]= useState('');
@@ -46,19 +48,19 @@ function App() {
     });
   };
 
-  function deleteTask( id ){
-    const taskToDelete={ id: id };
-    axios({
-      method: "DELETE",
-      url: "/api/todos",
-      data: taskToDelete,
-    }).then((response)=>{
-      // console.log('task deleted', response.data);
-      fetchList();
-    }).catch((error)=>{
-      console.log("error in DELETE", error)
-    });
-  }
+  // function deleteTask( id ){
+  //   const taskToDelete={ id: id };
+  //   axios({
+  //     method: "DELETE",
+  //     url: "/api/todos",
+  //     data: taskToDelete,
+  //   }).then((response)=>{
+  //     // console.log('task deleted', response.data);
+  //     fetchList();
+  //   }).catch((error)=>{
+  //     console.log("error in DELETE", error)
+  //   });
+  // }
   
   function toggleIsComplete( id, status ){
     const taskToComplete = {
@@ -82,6 +84,7 @@ function App() {
   return (
     <div>
       <h1>TO DO APP</h1>
+      <NamePractice firstName="Gregg" lastName="Trunnell"/>
       <form>
         <input type="text" placeholder="Add a To Do" onChange={(e)=>{setNewToDo(e.target.value)}} />
         <br />
@@ -103,11 +106,12 @@ function App() {
               <td className={toDos.isComplete ? "complete-true" : "complete-false"}> */}
               <td>
                 <button onClick={() => toggleIsComplete(toDos.id, toDos.isComplete)}>{toDos.isComplete ? "Completed" : "Not Completed"}</button>
-              </td>          
+              </td> 
+              <deleteTask id={id}></deleteTask>         
               {/* if written like: onClick={deleteTask(toDos.id)} without arrow function the 
               deleteTask would be invoked on render.
               In this case the arrow function is calling deleteTask with toDos.id as its argument*/}
-              <td><button onClick={() => deleteTask(toDos.id)}>Delete</button></td> 
+              {/* <td><button onClick={() => deleteTask(toDos.id)}>Delete</button></td>  */}
             </tr>
           ))}
           </tbody>
