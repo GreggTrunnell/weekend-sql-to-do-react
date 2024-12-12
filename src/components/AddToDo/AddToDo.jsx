@@ -1,18 +1,14 @@
-import { useState } from "react";
-
 function AddToDo( {addToDo, setNewToDo} ) {
-  
-    function setToDo(e){
+  function setToDo(e){
       setNewToDo(e.target.value)
-      }
-    
-    function handleSubmit(e){
+    }
+  function handleSubmit(e){
       e.preventDefault();
       addToDo();
     }  
 
   return (
-    <div>   
+    <div className="AddToDo">   
       <form onSubmit={handleSubmit}>
         <input type="text" placeholder="Add a To Do" onChange={setToDo} />
         <br />

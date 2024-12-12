@@ -1,7 +1,4 @@
 
-import { useState } from 'react'
-//used command-f to select all "App" from App.jsx and 
-//replace with NamePractice.
 function NamePractice(props) {
     return (
         <div className="NamePractice">
