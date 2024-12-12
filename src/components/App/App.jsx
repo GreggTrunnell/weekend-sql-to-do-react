@@ -97,9 +97,8 @@ function App() {
         </thead>
         <tbody>
           {toDos.map(( toDo, index)=>(
-            <tr key={toDo.id}> 
+            <tr key={index}> 
               <td>{ toDo.text }</td>
-             
               <td >
                 <button className={toDo.isComplete ? "complete-true" : "complete-false"}
                 onClick={() => toggleIsComplete(toDo.id, toDo.isComplete)}>{toDo.isComplete ? "Completed" : "Not Completed"}</button>
