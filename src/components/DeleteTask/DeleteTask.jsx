@@ -17,11 +17,9 @@ function DeleteTask({ id, fetchList }) {
         console.log('error in delete comp',error)
     })
     }
-
+    
     return (
-   
-     <td className="DeleteTask"><button onClick={handleDelete}>Delete</button></td> 
-        
+         <td className="DeleteTask"><button onClick={handleDelete}>Delete</button></td>  
     );
 }
 

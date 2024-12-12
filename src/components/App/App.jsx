@@ -79,10 +79,10 @@ function App() {
         <tbody>
           {toDos.map(( toDo, index)=>(
             <tr key={index}> 
-              <td>{ toDo.text }</td>
-              {/* Can't get the classes to work properly. Might have to do with CDN
-              <td className={toDo.isComplete ? "complete-true" : "complete-false"}> */}
-              <td >
+              <td>
+                { toDo.text }
+              </td>
+              <td>
                 <button className={toDo.isComplete ? "complete-true" : "complete-false"}
                 onClick={() => toggleIsComplete(toDo.id, toDo.isComplete)}>
                 {toDo.isComplete ? "Completed" : "Not Completed"}</button>
