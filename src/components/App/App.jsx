@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 import './App.css';
 import NamePractice from "../NamePractice/NamePractice";
-import deleteTask from "../deleteTask/deleteTask";
+import AddToDo from "../AddToDo/AddToDo";
+import TableHead from "../TableHead/TableHead";
 
 function App() {
   const [newToDo, setNewToDo ]= useState('');
@@ -48,19 +49,19 @@ function App() {
     });
   };
 
-  // function deleteTask( id ){
-  //   const taskToDelete={ id: id };
-  //   axios({
-  //     method: "DELETE",
-  //     url: "/api/todos",
-  //     data: taskToDelete,
-  //   }).then((response)=>{
-  //     // console.log('task deleted', response.data);
-  //     fetchList();
-  //   }).catch((error)=>{
-  //     console.log("error in DELETE", error)
-  //   });
-  // }
+  function deleteTask( id ){
+    const taskToDelete={ id: id };
+    axios({
+      method: "DELETE",
+      url: "/api/todos",
+      data: taskToDelete,
+    }).then((response)=>{
+      // console.log('task deleted', response.data);
+      fetchList();
+    }).catch((error)=>{
+      console.log("error in DELETE", error)
+    });
+  }
   
   function toggleIsComplete( id, status ){
     const taskToComplete = {
@@ -85,33 +86,23 @@ function App() {
     <div>
       <h1>TO DO APP</h1>
       <NamePractice firstName="Gregg" lastName="Trunnell"/>
-      <form>
-        <input type="text" placeholder="Add a To Do" onChange={(e)=>{setNewToDo(e.target.value)}} />
-        <br />
-        <button onClick={ addToDo }>Add To Do</button>
-      </form>
+      <AddToDo addToDo={addToDo} setNewToDo={setNewToDo}/>
       <table>
-        <thead>
-          <tr>
-            <th>To Do's List</th>
-            <th>To Do Status</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
+        <TableHead/>
         <tbody>
-          {toDos.map(( toDos, index)=>(
-            <tr key={toDos.id}> 
-              <td>{ toDos.text }</td>
+          {toDos.map(( toDo, index)=>(
+            <tr key={index}> 
+              <td>{ toDo.text }</td>
               {/* Can't get the classes to work properly. Might have to do with CDN
-              <td className={toDos.isComplete ? "complete-true" : "complete-false"}> */}
+              <td className={toDo.isComplete ? "complete-true" : "complete-false"}> */}
               <td>
-                <button onClick={() => toggleIsComplete(toDos.id, toDos.isComplete)}>{toDos.isComplete ? "Completed" : "Not Completed"}</button>
+                <button onClick={() => toggleIsComplete(toDo.id, toDo.isComplete)}>{toDo.isComplete ? "Completed" : "Not Completed"}</button>
               </td> 
-              <deleteTask id={id}></deleteTask>         
-              {/* if written like: onClick={deleteTask(toDos.id)} without arrow function the 
+              
+              {/* if written like: onClick={deleteTask(toDo.id)} without arrow function the 
               deleteTask would be invoked on render.
-              In this case the arrow function is calling deleteTask with toDos.id as its argument*/}
-              {/* <td><button onClick={() => deleteTask(toDos.id)}>Delete</button></td>  */}
+              In this case the arrow function is calling deleteTask with toDo.id as its argument*/}
+              <td><button onClick={() => deleteTask(toDo.id)}>Delete</button></td> 
             </tr>
           ))}
           </tbody>
