@@ -16,6 +16,18 @@
 .App-intro {
   font-size: large;
 }
+.complete-true{
+  background-color: green;
+}
+
+.complete-false{
+  background-color: red;
+}
+
+table{
+  width: 100%;
+}
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

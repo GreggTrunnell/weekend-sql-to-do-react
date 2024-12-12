@@ -96,18 +96,18 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {toDos.map(( toDos, index)=>(
-            <tr key={toDos.id}> 
-              <td>{ toDos.text }</td>
-              {/* Can't get the classes to work properly. Might have to do with CDN
-              <td className={toDos.isComplete ? "complete-true" : "complete-false"}> */}
-              <td>
-                <button onClick={() => toggleIsComplete(toDos.id, toDos.isComplete)}>{toDos.isComplete ? "Completed" : "Not Completed"}</button>
+          {toDos.map(( toDo, index)=>(
+            <tr key={toDo.id}> 
+              <td>{ toDo.text }</td>
+             
+              <td >
+                <button className={toDo.isComplete ? "complete-true" : "complete-false"}
+                onClick={() => toggleIsComplete(toDo.id, toDo.isComplete)}>{toDo.isComplete ? "Completed" : "Not Completed"}</button>
               </td>          
-              {/* if written like: onClick={deleteTask(toDos.id)} without arrow function the 
+              {/* if written like: onClick={deleteTask(toDo.id)} without arrow function the 
               deleteTask would be invoked on render.
-              In this case the arrow function is calling deleteTask with toDos.id as its argument*/}
-              <td><button onClick={() => deleteTask(toDos.id)}>Delete</button></td> 
+              In this case the arrow function is calling deleteTask with toDo.id as its argument*/}
+              <td><button onClick={() => deleteTask(toDo.id)}>Delete</button></td> 
             </tr>
           ))}
           </tbody>
