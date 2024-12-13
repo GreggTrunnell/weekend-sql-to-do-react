@@ -5,6 +5,7 @@ import NamePractice from "../NamePractice/NamePractice";
 import AddToDo from "../AddToDo/AddToDo";
 import TableHead from "../TableHead/TableHead";
 import DeleteTask from "../deleteTask/deleteTask";
+import ToDoItem from "../ToDoItem/ToDoItem";
 
 function App() {
   const [newToDo, setNewToDo ]= useState('');
@@ -67,8 +68,8 @@ function App() {
     })
     .catch((error)=>{
       console.log("error PUT app.jsx", error)
-    })
-  }
+    });
+  };
   return (
     <div>
       <h1>TO DO APP</h1>
