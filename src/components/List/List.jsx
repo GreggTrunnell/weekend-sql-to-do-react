@@ -10,7 +10,6 @@ function List( {toDos=[] , fetchList } ) {
             id: id,
             isComplete: !status,
         }
-        console.log(taskToComplete)
         axios({
           method: "PUT",
           url: '/api/todos',
@@ -39,7 +38,7 @@ function List( {toDos=[] , fetchList } ) {
                 onClick={() => toggleIsComplete(toDo.id, toDo.isComplete)}>
                 {toDo.isComplete ? "Completed" : "Not Completed"}</button>
               </td> 
-              <DeleteTask taskId={ toDo.id } fetchList={ fetchList }/>
+              <DeleteTask id={ toDo.id } fetchList={ fetchList }/>
             </tr>
           ))}
           </tbody>
