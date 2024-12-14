@@ -3,9 +3,6 @@ import axios from 'axios';
 import './App.css';
 import Header from "../Header/Header";
 import AddToDo from "../AddToDo/AddToDo";
-// import TableHead from "../TableHead/TableHead";
-// import DeleteTask from "../deleteTask/deleteTask";
-// import ToDoItem from "../ToDoItem/ToDoItem";
 import List from "../List/List";
 
 function App() {

@@ -4,7 +4,6 @@ import DeleteTask from '../deleteTask/deleteTask';
 import TableHead from '../TableHead/TableHead';
 
 function List( {toDos=[] , fetchList } ) {
-   
     function toggleIsComplete( id, status ){
         const taskToComplete = {
             id: id,
@@ -16,7 +15,6 @@ function List( {toDos=[] , fetchList } ) {
           data: taskToComplete
         })
         .then((response)=>{
-          // console.log("PUT in app.jsx", response.data);
           fetchList();
         })
         .catch((error)=>{
@@ -28,8 +26,8 @@ function List( {toDos=[] , fetchList } ) {
             <table>
       <TableHead/>
         <tbody>
-          {toDos.map(( toDo )=>(
-            <tr key={toDo.id}> 
+          {toDos.map(( toDo, index)=>(
+            <tr key={index}> 
               <td>
                 { toDo.text }
               </td>
