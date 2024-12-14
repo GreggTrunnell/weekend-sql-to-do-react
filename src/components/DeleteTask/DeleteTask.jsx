@@ -19,7 +19,7 @@ function DeleteTask({ id, fetchList }) {
     }
     
     return (
-         <td className="DeleteTask"><button onClick={handleDelete}>Delete</button></td>  
+         <td className="DeleteTask"><button className="deleteColor" onClick={handleDelete}>Delete</button></td>  
     );
 }
 

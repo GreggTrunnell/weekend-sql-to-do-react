@@ -17,12 +17,22 @@
   font-size: large;
 }
 .complete-true{
-  background-color: green;
+  background-color: rgb(16, 79, 16);
 }
 .complete-false{
-  background-color: red;
+  background-color: rgb(142, 118, 23);
 }
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+.Header{
+  background-color: rgb(11, 11, 93);
+  text-align: center;
+}
+.AddToDo{
+  text-align: center;
+}
+.deleteColor{
+  background-color: rgb(131, 10, 10);
 }

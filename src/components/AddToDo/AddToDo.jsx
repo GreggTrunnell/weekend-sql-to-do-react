@@ -12,7 +12,7 @@ function AddToDo( {addToDo, setNewToDo} ) {
       <form onSubmit={handleSubmit}>
         <input type="text" placeholder="Add a To Do" onChange={setToDo} />
         <br />
-        <button onClick={ addToDo }>Submit</button>
+        <button onClick={ addToDo }>Add To Do</button>
       </form>
     </div>
   );
