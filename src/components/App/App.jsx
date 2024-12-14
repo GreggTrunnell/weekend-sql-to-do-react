@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import './App.css';
-import NamePractice from "../NamePractice/NamePractice";
+import Header from "../Header/Header";
 import AddToDo from "../AddToDo/AddToDo";
-import TableHead from "../TableHead/TableHead";
-import DeleteTask from "../deleteTask/deleteTask";
-import ToDoItem from "../ToDoItem/ToDoItem";
+// import TableHead from "../TableHead/TableHead";
+// import DeleteTask from "../deleteTask/deleteTask";
+// import ToDoItem from "../ToDoItem/ToDoItem";
+import List from "../List/List";
 
 function App() {
   const [newToDo, setNewToDo ]= useState('');
   const [ toDos, setToDos ] = useState([]);
 
-  
   useEffect(()=> {
     fetchList();
   },[]);
@@ -51,32 +51,33 @@ function App() {
     });
   };
   
-  function toggleIsComplete( id, status ){
-    const taskToComplete = {
-        id: id,
-        isComplete: !status,
-    }
-    console.log(taskToComplete)
-    axios({
-      method: "PUT",
-      url: '/api/todos',
-      data: taskToComplete
-    })
-    .then((response)=>{
-      // console.log("PUT in app.jsx", response.data);
-      fetchList();
-    })
-    .catch((error)=>{
-      console.log("error PUT app.jsx", error)
-    });
-  };
+  // function toggleIsComplete( id, status ){
+  //   const taskToComplete = {
+  //       id: id,
+  //       isComplete: !status,
+  //   }
+  //   console.log(taskToComplete)
+  //   axios({
+  //     method: "PUT",
+  //     url: '/api/todos',
+  //     data: taskToComplete
+  //   })
+  //   .then((response)=>{
+  //     // console.log("PUT in app.jsx", response.data);
+  //     fetchList();
+  //   })
+  //   .catch((error)=>{
+  //     console.log("error PUT app.jsx", error)
+  //   });
+  // };
   return (
     <div>
-      <h1>TO DO APP</h1>
-      <NamePractice firstName="Gregg" lastName="Trunnell"/>
+     
+      <Header firstName="Gregg" lastName="Trunnell"/>
       <AddToDo addToDo={addToDo} setNewToDo={setNewToDo}/>
-      <table>
-        <TableHead/>
+      <List toDo={toDos.id} fetchList={fetchList}/>
+      {/* <table>
+      <TableHead/>
         <tbody>
           {toDos.map(( toDo, index)=>(
             <tr key={index}> 
@@ -92,7 +93,7 @@ function App() {
             </tr>
           ))}
           </tbody>
-          </table>  
+      </table>   */}
     </div>
   );
 }
