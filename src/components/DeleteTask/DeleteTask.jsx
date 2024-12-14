@@ -1,9 +1,9 @@
 import React from "react";
 import Axios from "axios";
 // will need two props. one to target the item to be deleted and one to delete
-function DeleteTask({ id, fetchList }) {
+function DeleteTask({ taskId, fetchList }) {
     function handleDelete(){
-        const toDoToDelete = { id: id };
+        const toDoToDelete = { taskId: taskId };
     Axios({
         method: "DELETE",
         url: "/api/todos",

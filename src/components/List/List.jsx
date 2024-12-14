@@ -3,7 +3,8 @@ import axios from "axios";
 import DeleteTask from '../deleteTask/deleteTask';
 import TableHead from '../TableHead/TableHead';
 
-function List( toDos, fetchList ) {
+function List( {toDos=[] , fetchList } ) {
+   
     function toggleIsComplete( id, status ){
         const taskToComplete = {
             id: id,
@@ -28,8 +29,8 @@ function List( toDos, fetchList ) {
             <table>
       <TableHead/>
         <tbody>
-          {toDos.map(( toDo, index)=>(
-            <tr key={index}> 
+          {toDos.map(( toDo )=>(
+            <tr key={toDo.id}> 
               <td>
                 { toDo.text }
               </td>
@@ -38,7 +39,7 @@ function List( toDos, fetchList ) {
                 onClick={() => toggleIsComplete(toDo.id, toDo.isComplete)}>
                 {toDo.isComplete ? "Completed" : "Not Completed"}</button>
               </td> 
-              <DeleteTask id={ toDo.id } fetchList={ fetchList }/>
+              <DeleteTask taskId={ toDo.id } fetchList={ fetchList }/>
             </tr>
           ))}
           </tbody>
