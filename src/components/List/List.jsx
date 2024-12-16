@@ -29,9 +29,8 @@ function List( { toDos, fetchList } ) {
      <table>
       <TableHead/>
         <tbody>
-          {toDos.map(( toDo, index)=>(
-            <tr key={index}> 
-
+          {toDos.map(( toDo )=>(
+            <tr key={toDo.id}> 
               <td>
                 { toDo.text }
               </td>
@@ -43,7 +42,6 @@ function List( { toDos, fetchList } ) {
               <DeleteTask id={ toDo.id } fetchList={ fetchList }/>
             </tr>
           ))}
-
         </tbody>
       </table>  
     </div>

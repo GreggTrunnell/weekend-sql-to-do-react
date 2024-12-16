@@ -17,7 +17,8 @@ function App() {
  event.preventDefault();
     console.log("submit worked");
     // the ... is react's .push
-    setToDos([...toDos, newToDo])
+    setToDos([...toDos, newToDo]);
+    console.log("gregg trunnell")
     axios ({ 
       method: 'POST',
       url: '/api/todos',
@@ -27,6 +28,7 @@ function App() {
       }
     }).then((response)=>{
       console.log('POST response data', response.data);
+      console.log("meow");
       fetchList();
     }).catch((error)=>{
       console.log('error in POST',error);
