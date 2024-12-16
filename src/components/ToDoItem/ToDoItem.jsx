@@ -1,7 +1,4 @@
 
-import { useState } from 'react'
-
-
 const toggleIsComplete=( id, status )=>{
     const taskToComplete = {
         id: id,
@@ -42,8 +39,8 @@ const toggleIsComplete=( id, status )=>{
               <DeleteTask id={ toDo.id } fetchList={ fetchList }/>
             </tr>
           ))}
-          </tbody>
-          </table>  
+        </tbody>
+      </table>  
     </div>
   );
 }

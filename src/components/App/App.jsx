@@ -16,9 +16,6 @@ function App() {
   function addToDo(event) {
  event.preventDefault();
     console.log("submit worked");
-    // the ... is react's .push
-    setToDos([...toDos, newToDo]);
-    console.log("gregg trunnell")
     axios ({ 
       method: 'POST',
       url: '/api/todos',
@@ -49,7 +46,6 @@ function App() {
       console.log("error on GET", error);
     });
   };
-  
 
   return (
     <div>

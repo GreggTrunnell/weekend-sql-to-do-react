@@ -3,8 +3,6 @@ import axios from "axios";
 import DeleteTask from '../deleteTask/deleteTask';
 import TableHead from '../TableHead/TableHead';
 
-
-
 function List( { toDos, fetchList } ) {
     function toggleIsComplete( id, status ){
         const taskToComplete = {
