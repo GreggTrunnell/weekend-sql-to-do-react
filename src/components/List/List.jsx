@@ -3,8 +3,9 @@ import axios from "axios";
 import DeleteTask from '../deleteTask/deleteTask';
 import TableHead from '../TableHead/TableHead';
 
-function List( {toDos=[] , fetchList } ) {
-   
+
+
+function List( { toDos, fetchList } ) {
     function toggleIsComplete( id, status ){
         const taskToComplete = {
             id: id,
@@ -16,7 +17,6 @@ function List( {toDos=[] , fetchList } ) {
           data: taskToComplete
         })
         .then((response)=>{
-          // console.log("PUT in app.jsx", response.data);
           fetchList();
         })
         .catch((error)=>{
@@ -24,12 +24,14 @@ function List( {toDos=[] , fetchList } ) {
         });
       };
     return (
-        <div className="List">
-            <table>
+
+    <div className="List">
+     <table>
       <TableHead/>
         <tbody>
-          {toDos.map(( toDo, )=>(
-            <tr key={toDo.id}> 
+          {toDos.map(( toDo, index)=>(
+            <tr key={index}> 
+
               <td>
                 { toDo.text }
               </td>
@@ -41,9 +43,10 @@ function List( {toDos=[] , fetchList } ) {
               <DeleteTask id={ toDo.id } fetchList={ fetchList }/>
             </tr>
           ))}
-          </tbody>
+
+        </tbody>
       </table>  
-        </div>
+    </div>
     );
 }
 
