@@ -25,7 +25,6 @@ function App() {
       }
     }).then((response)=>{
       console.log('POST response data', response.data);
-      console.log("meow");
       fetchList();
     }).catch((error)=>{
       console.log('error in POST',error);
@@ -33,7 +32,7 @@ function App() {
   }
 
   const fetchList= () => {
-    console.log('fetching images')
+    console.log('fetching list')
     axios({
       method: "GET",
       url: "/api/todos",
