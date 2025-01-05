@@ -1,6 +1,6 @@
 
 import axios from "axios";
-import DeleteTask from '../deleteTask/deleteTask';
+import DeleteTask from "../DeleteTask/DeleteTask";
 import TableHead from '../TableHead/TableHead';
 
 function List( { toDos, fetchList } ) {
