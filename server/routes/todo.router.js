@@ -32,6 +32,7 @@ router.post('/', (req, res)=>{
         res.sendStatus(500);
     })
 })
+
 // PUT
 router.put('/', (req,res)=>{
     console.log("PUT in router", req.body);
@@ -45,7 +46,6 @@ router.put('/', (req,res)=>{
         console.log("error in PUT router", error)
     })
 })
-
 
 // DELETE
 // Request must include a paramater indicating item to remove with "id"
@@ -61,7 +61,6 @@ router.delete('/', (req,res)=>{
         console.log('error in delete router', error);
         res.sendStatus( 400 );
     })
-
 })
 
 module.exports = router;
